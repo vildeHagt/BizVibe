@@ -1,58 +1,28 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
+import { ThemeProvider } from 'styled-components';
+import { darkTheme } from './styles/theme.ts';
+import GlobalStyles from './styles/globalStyles';
+import { Header, OuterContainer, Container, Nav } from './styles/components';
 
 function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
-
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
-
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
-
     return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
+      <OuterContainer>
+        <ThemeProvider theme={darkTheme}>
+          <Header>
+        <h2>Biz<br></br>Vibe</h2>
+        <Nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </Nav>
+        </Header>
+            <GlobalStyles />
+            <Container>
+                <h2>Welcome to the Dark Mode Site</h2>
+            </Container>
+        </ThemeProvider>
+        </OuterContainer>
     );
-
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        if (response.ok) {
-            const data = await response.json();
-            setForecasts(data);
-        }
-    }
 }
 
 export default App;
