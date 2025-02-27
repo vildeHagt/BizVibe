@@ -3,17 +3,15 @@ import styled from "styled-components";
 export const Header = styled.header`
   background-color: ${(props) => props.theme.surface};
   color: ${(props) => props.theme.text};
-  padding: 15px 20px;
-  border-bottom: 1px solid ${(props) => props.theme.primary};
   top: 0;
   width: 100%;
   display: flex;
   text-align: left;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 
   @media (max-width: 768px) {
-    flex-direction: column;
     padding: 10px;
     text-align: left;
   }
@@ -28,9 +26,7 @@ export const OuterContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  text-align: center;
   padding: 20px;
-  padding-top: 80px;
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text};
   max-width: 1200px;
