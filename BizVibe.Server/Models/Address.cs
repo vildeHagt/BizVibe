@@ -13,7 +13,7 @@ namespace BizVibe.Server.Models
         [JsonPropertyName("poststed")]
         public string? PostalPlace { get; set; }
         [JsonPropertyName("adresse")]
-        public List<string>? StreetAddress { get; set; }
+        public string[]? StreetAddress { get; set; }
         [JsonPropertyName("landkode")]
         public string? CountryCode { get; set; }
         [JsonPropertyName("kommunenummer")]

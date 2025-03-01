@@ -46,7 +46,6 @@ const SearchBar: React.FC = () => {
     setError(null);
 
     try {
-      console.log(organisationName);
       const data = await fetchOrganizations(organisationName);
       setOrganizations(data);
       console.log("Fetched organizations:", data);

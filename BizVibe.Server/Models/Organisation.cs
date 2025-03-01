@@ -4,13 +4,12 @@ namespace BizVibe.Server.Models
 {
     public class Organisation
     {
-        [JsonPropertyName("organisasjonsnummers")]
+        [JsonPropertyName("organisasjonsnummer")]
         public required string OrganisationNumber { get; set; }
         [JsonPropertyName("navn")]
         public required string Name { get; set; }
         [JsonPropertyName("organisasjonsform")]
         public required OrganisationForm OrganisationForm { get; set; }
-
         [JsonPropertyName("postadresse")]
         public Address? PostalAddress { get; set; }
         [JsonPropertyName("forretningsadresse")]

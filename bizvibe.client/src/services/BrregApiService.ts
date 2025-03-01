@@ -1,7 +1,7 @@
 export async function fetchOrganizations(organisationName: string) {
   try {
     const response = await fetch(
-      "https://localhost:53942/business/GetOrganisations/organisationName=" +
+      "https://localhost:7081/business/GetOrganisations?organisationName=" +
         organisationName,
       {
         method: "GET",
@@ -15,6 +15,7 @@ export async function fetchOrganizations(organisationName: string) {
       throw new Error("Network response was not ok");
     }
 
+    console.info(response);
     const data = await response.json();
     return data;
   } catch (error) {

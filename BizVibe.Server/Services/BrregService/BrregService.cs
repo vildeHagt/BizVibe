@@ -10,7 +10,7 @@ namespace BizVibe.Server.Services.BrregService
             throw new NotImplementedException();
         }
 
-        public Task<List<Units>?> SearchForOrganisationsByName(string organisationName)
+        public Task<Units?> SearchForOrganisationsByName(string organisationName)
         {
             return BrregProxy.SearchForOrganisationsByName(organisationName);
         }

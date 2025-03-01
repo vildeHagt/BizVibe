@@ -12,11 +12,11 @@ namespace BizVibe.Server.Proxies.BrregProxy
             throw new NotImplementedException();
         }
 
-        public async Task<List<Units>?> SearchForOrganisationsByName(string organisationName)
+        public async Task<Units?> SearchForOrganisationsByName(string organisationName)
         {
             Console.WriteLine(brregEndpoints.ToString());
             var response = await httpClient.GetAsync(baseUrl + brregEndpoints.SearchForOrganisationsByName(organisationName));
-            var organisations = await response.Content.ReadFromJsonAsync<List<Units>>();
+            var organisations = await response.Content.ReadFromJsonAsync<Units>();
             return organisations;
         }
     }
