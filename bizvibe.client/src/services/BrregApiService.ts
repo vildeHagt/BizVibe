@@ -1,12 +1,12 @@
-export const fetchOrganizations = async () => {
+export async function fetchOrganizations(organisationName: string) {
   try {
     const response = await fetch(
-      "https://localhost:53942/api/business/GetOrganisations",
+      "https://localhost:53942/business/GetOrganisations/organisationName=" +
+        organisationName,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // Include any necessary headers, such as Authorization
         },
       }
     );
@@ -21,4 +21,4 @@ export const fetchOrganizations = async () => {
     console.error("Failed to fetch organizations:", error);
     throw error;
   }
-};
+}

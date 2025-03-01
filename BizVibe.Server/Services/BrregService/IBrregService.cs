@@ -5,6 +5,6 @@ namespace BizVibe.Server.Services.BrregService
     public interface IBrregService
     {
         public Task<Organisation> GetOrganisationByOrganisationNumber(string organisationNumber);
-        public Task<List<Organisation>?> SearchForOrganisationByName(string organisationName);
+        public Task<List<Units>?> SearchForOrganisationsByName(string organisationName);
     }
 }

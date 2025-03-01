@@ -1,5 +1,6 @@
-import React from "react";
 import styled from "styled-components";
+import React, { useState } from "react";
+import { fetchOrganizations } from "../services/BrregApiService";
 
 const SearchBarContainer = styled.div`
   display: flex;
@@ -34,18 +35,51 @@ const SearchBarContainer = styled.div`
 `;
 
 const SearchBar: React.FC = () => {
-  const handleSearch = (event: React.FormEvent) => {
+  const [organisationName, setOrganisationName] = useState("");
+  const [organizations, setOrganizations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Add your search logic here
-    console.log("Search initiated");
+    setLoading(true);
+    setError(null);
+
+    try {
+      console.log(organisationName);
+      const data = await fetchOrganizations(organisationName);
+      setOrganizations(data);
+      console.log("Fetched organizations:", data);
+    } catch (err) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOrganisationName(event.target.value);
   };
 
   return (
     <SearchBarContainer>
       <form onSubmit={handleSearch}>
-        <input type="text" placeholder="Søk etter selskap..." />
+        <input
+          type="text"
+          value={organisationName}
+          onChange={handleInputChange}
+          placeholder="Søk etter selskap..."
+        />
         <button type="submit">Søk</button>
       </form>
+
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
+
+      <ul>
+        {organizations.map((org) => (
+          <li>{org}</li>
+        ))}
+      </ul>
     </SearchBarContainer>
   );
 };

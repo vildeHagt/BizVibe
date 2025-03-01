@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BizVibe.Server.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("business")]
 public class BusinessController : ControllerBase
 {
     private readonly ILogger<BusinessController> _logger;
@@ -17,8 +17,8 @@ public class BusinessController : ControllerBase
         _brregService = brregService;
     }
 
-    [HttpGet(Name = "GetOrganisations")]
-    public async Task<List<Organisation>?> Get(string organisationName)
+    [HttpGet("GetOrganisations")]
+    public async Task<List<Units>?> Get(string organisationName)
     {
         var organisations = await _brregService.SearchForOrganisationByName(organisationName);
         _logger.LogInformation($"Found {organisations?.Count} organisations with the name {organisationName}");
