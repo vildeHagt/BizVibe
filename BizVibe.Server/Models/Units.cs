@@ -11,6 +11,6 @@ namespace BizVibe.Server.Models
     public class Embedded
     {
         [JsonPropertyName("enheter")]
-        public Organisation[] Units { get; set; }
+        public Organisation[]? Organisations { get; set; }
     }
 }

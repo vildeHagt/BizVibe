@@ -5,9 +5,9 @@ namespace BizVibe.Server.Models
     public class Organisation
     {
         [JsonPropertyName("organisasjonsnummer")]
-        public required string OrganisationNumber { get; set; }
+        public string? OrganisationNumber { get; set; }
         [JsonPropertyName("navn")]
-        public required string Name { get; set; }
+        public string? Name { get; set; }
         [JsonPropertyName("organisasjonsform")]
         public required OrganisationForm OrganisationForm { get; set; }
         [JsonPropertyName("postadresse")]
@@ -15,31 +15,31 @@ namespace BizVibe.Server.Models
         [JsonPropertyName("forretningsadresse")]
         public Address? BusinessAddress { get; set; }
         [JsonPropertyName("registrertIMvaregisteret")]
-        public required bool RegisteredInMvaRegister { get; set; }
+        public bool? RegisteredInMvaRegister { get; set; }
         [JsonPropertyName("maalform")]
-        public required string Language { get; set; }
+        public string? Language { get; set; }
         [JsonPropertyName("underAvvikling")]
-        public required bool UnderLiquidation { get; set; }
+        public bool? UnderLiquidation { get; set; }
         [JsonPropertyName("registrertIStiftelsesregisteret")]
-        public required bool RegisteredInFoundationRegister { get; set; }
+        public bool? RegisteredInFoundationRegister { get; set; }
         [JsonPropertyName("konkurs")]
-        public required bool Bankrupt { get; set; }
+        public bool? Bankrupt { get; set; }
         [JsonPropertyName("registrertIFrivillighetsregisteret")]
-        public required bool RegisteredInVoluntaryRegister { get; set; }
+        public bool? RegisteredInVoluntaryRegister { get; set; }
         [JsonPropertyName("stiftelsesdato")]
-        public required string FoundationDate { get; set; }
+        public string? FoundationDate { get; set; }
         [JsonPropertyName("registrertIForetaksregisteret")]
-        public required bool RegisteredInEnterpriseRegister { get; set; }
+        public bool? RegisteredInEnterpriseRegister { get; set; }
         [JsonPropertyName("registreringsdatoEnhetsregisteret")]
-        public required string RegistrationDateUnitRegister { get; set; }
+        public string?   RegistrationDateUnitRegister { get; set; }
         [JsonPropertyName("hjemmeside")]
         public string? Website { get; set; }
         [JsonPropertyName("underTvangsavviklingEllerTvangsopplosning")]
-        public required bool UnderCompulsoryLiquidationOrCompulsoryDissolution { get; set; }
+        public bool? UnderCompulsoryLiquidationOrCompulsoryDissolution { get; set; }
         [JsonPropertyName("antallAnsatte")]
         public int? NumberOfEmployees { get; set; }
         [JsonPropertyName("harRegistrertAntallAnsatte")]
-        public required bool HasRegisteredNumberOfEmployees { get; set; }
+        public bool? HasRegisteredNumberOfEmployees { get; set; }
         [JsonPropertyName("epostadresse")]
         public string? EmailAddress { get; set; }
         [JsonPropertyName("telefon")]

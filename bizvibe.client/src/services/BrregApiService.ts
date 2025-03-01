@@ -15,8 +15,8 @@ export async function fetchOrganizations(organisationName: string) {
       throw new Error("Network response was not ok");
     }
 
-    console.info(response);
     const data = await response.json();
+    console.info(data);
     return data;
   } catch (error) {
     console.error("Failed to fetch organizations:", error);

@@ -5,32 +5,49 @@ import GlobalStyles from "./styles/globalStyles";
 import {
   Header,
   OuterContainer,
-  Container,
+  CenteredContainer,
   Nav,
 } from "./components/components.ts";
 import SearchBar from "./components/SearchBar";
+import { useState } from "react";
+import { Organization } from "./interfaces/Organization.ts";
+import OrganizationList from "./components/OrganizationList.tsx";
 
 function App() {
+  const [organizations, setOrganizations] = useState<Organization[]>([]);
+  const [searchWord, setSearchWord] = useState<string>("");
+
   return (
     <OuterContainer>
       <ThemeProvider theme={darkTheme}>
         <Header>
-          <Container>
+          <CenteredContainer>
             <h2>
               Biz<br></br>Vibe
             </h2>
-          </Container>
-          <Container>
+          </CenteredContainer>
+          <CenteredContainer>
             <Nav>
               <a href="#home">Home</a>
               <a href="#about">About</a>
               <a href="#contact">Contact</a>
             </Nav>
-          </Container>
-          <Container>
-            <SearchBar /> {/* Include the SearchBar component */}
-          </Container>
+          </CenteredContainer>
+          <CenteredContainer>
+            <SearchBar
+              onSearchResults={(organizations, searchWord) => {
+                setOrganizations(organizations);
+                setSearchWord(searchWord);
+              }}
+            />
+          </CenteredContainer>
         </Header>
+        <CenteredContainer>
+          <OrganizationList
+            organizations={organizations}
+            searchWord={searchWord}
+          ></OrganizationList>
+        </CenteredContainer>
         <GlobalStyles />
       </ThemeProvider>
     </OuterContainer>

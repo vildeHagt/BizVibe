@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { fetchOrganizations } from "../services/BrregApiService";
+import { Organization } from "../interfaces/Organization";
 
 const SearchBarContainer = styled.div`
   display: flex;
@@ -34,9 +35,12 @@ const SearchBarContainer = styled.div`
   }
 `;
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  onSearchResults: (organizations: Organization[], searchWord: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
   const [organisationName, setOrganisationName] = useState("");
-  const [organizations, setOrganizations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -47,8 +51,7 @@ const SearchBar: React.FC = () => {
 
     try {
       const data = await fetchOrganizations(organisationName);
-      setOrganizations(data);
-      console.log("Fetched organizations:", data);
+      onSearchResults(data, organisationName);
     } catch (err) {
     } finally {
       setLoading(false);
@@ -73,12 +76,6 @@ const SearchBar: React.FC = () => {
 
       {loading && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}
-
-      <ul>
-        {organizations.map((org) => (
-          <li>{org}</li>
-        ))}
-      </ul>
     </SearchBarContainer>
   );
 };
