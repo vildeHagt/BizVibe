@@ -9,13 +9,10 @@ const SearchBarContainer = styled.div`
   padding: 10px;
   background-color: ${(props) => props.theme.surface};
   border-radius: 5px;
-  width: 100%;
   max-width: 400px;
-  margin: 0 auto;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   input {
-    flex: 1;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -71,7 +68,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
           onChange={handleInputChange}
           placeholder="Søk etter selskap..."
         />
-        <button type="submit">Søk</button>
+        <button type="submit">🔍</button>
       </form>
 
       {loading && <div>Loading...</div>}

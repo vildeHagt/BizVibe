@@ -5,4 +5,5 @@ export const darkTheme = {
   surface: "#0B021E",
   text: "#f9f9fb",
   descriptionText: "#4E485C",
+  listText: "#C1BEC5",
 };

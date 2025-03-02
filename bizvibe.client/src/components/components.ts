@@ -25,14 +25,13 @@ export const OuterContainer = styled.div`
 `;
 
 export const CenteredContainer = styled.div`
-  padding: 20px;
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text};
   max-width: 1200px;
   margin: 0 auto;
-  flex: 1;
   align-items: center;
   display: flex;
+  text-align: left;
 
   @media (max-width: 768px) {
     padding: 10px;
