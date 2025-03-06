@@ -4,6 +4,7 @@ import { Container } from "./components";
 import Emoji from "../styles/Emoji";
 import { capitalizeFirstLetter } from "../utils/captilazieFirstLetter";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OrganizationListContainer = styled.div`
   flex-wrap: wrap;
@@ -78,6 +79,7 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
     return null;
   }
 
+  const navigate = useNavigate();
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   const handleMouseEnter = (index: number) => {
@@ -86,6 +88,10 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
 
   const handleMouseLeave = () => {
     setHoveredRow(null);
+  };
+
+  const handleClick = (organisationName: string) => {
+    navigate(`/organization/${orgId}`);
   };
 
   return (
@@ -113,6 +119,7 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
                 isHovered={hoveredRow === index}
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
+                onClick={() => handleClick(org.navn)}
               >
                 <ListRow>{capitalizeFirstLetter(org.navn)}</ListRow>
                 <ListRow>
