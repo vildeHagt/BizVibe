@@ -12,10 +12,12 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 import { Organization } from "./interfaces/Organization.ts";
 import OrganizationList from "./components/OrganizationList.tsx";
+import { Loading } from "./components/LoadingScreen.tsx";
 
 function App() {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [searchWord, setSearchWord] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   return (
     <OuterContainer>
@@ -35,19 +37,26 @@ function App() {
           </CenteredContainer>
           <CenteredContainer>
             <SearchBar
-              onSearchResults={(organizations, searchWord) => {
+              onSearchResults={(organizations, searchWord, isLoading) => {
                 setOrganizations(organizations);
                 setSearchWord(searchWord);
+                setLoading(isLoading);
               }}
             />
           </CenteredContainer>
         </Header>
-        <CenteredContainer>
-          <OrganizationList
-            organizations={organizations}
-            searchWord={searchWord}
-          ></OrganizationList>
-        </CenteredContainer>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <CenteredContainer>
+              <OrganizationList
+                organizations={organizations}
+                searchWord={searchWord}
+              ></OrganizationList>
+            </CenteredContainer>
+          </>
+        )}
         <GlobalStyles />
       </ThemeProvider>
     </OuterContainer>

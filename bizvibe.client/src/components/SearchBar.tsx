@@ -33,7 +33,11 @@ const SearchBarContainer = styled.div`
 `;
 
 interface SearchBarProps {
-  onSearchResults: (organizations: Organization[], searchWord: string) => void;
+  onSearchResults: (
+    organizations: Organization[],
+    searchWord: string,
+    isLoading: boolean
+  ) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
@@ -48,7 +52,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
 
     try {
       const data = await fetchOrganizations(organisationName);
-      onSearchResults(data, organisationName);
+      onSearchResults(data, organisationName, loading);
     } catch (err) {
     } finally {
       setLoading(false);
@@ -70,9 +74,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
         />
         <button type="submit">🔍</button>
       </form>
-
-      {loading && <div>Loading...</div>}
-      {error && <div>Error: {error}</div>}
     </SearchBarContainer>
   );
 };
