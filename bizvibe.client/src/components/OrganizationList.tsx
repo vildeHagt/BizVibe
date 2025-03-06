@@ -3,6 +3,7 @@ import { Organization } from "../interfaces/Organization";
 import { Container } from "./components";
 import Emoji from "../styles/Emoji";
 import { capitalizeFirstLetter } from "../utils/captilazieFirstLetter";
+import { useState } from "react";
 
 const OrganizationListContainer = styled.div`
   flex-wrap: wrap;
@@ -34,17 +35,23 @@ const ListRow = styled.td`
 `;
 
 const HoverContainer = styled.tr`
-  transition: transform 0.2s;
+  transition: transform 0.2s, color 0.2s;
   margin: 0 auto;
 
   &:hover {
     transform: translateY(-5px);
+  }
+
+  td {
+    color: ${(props) =>
+      props.isHovered ? props.theme.text : props.theme.listText};
   }
 `;
 
 const ListRowTitle = styled.td`
   padding-right: 4rem;
   font-weight: bold;
+  padding-bottom: 1rem;
 `;
 
 const SearchWordTitle = styled.h1`
@@ -71,6 +78,16 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
     return null;
   }
 
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredRow(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRow(null);
+  };
+
   return (
     <OrganizationListContainer>
       <Container>
@@ -90,8 +107,13 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
                 <Emoji symbol="📍" />
               </ListRowTitle>
             </tr>
-            {organizations.map((org) => (
-              <HoverContainer>
+            {organizations.map((org, index) => (
+              <HoverContainer
+                key={index}
+                isHovered={hoveredRow === index}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
                 <ListRow>{capitalizeFirstLetter(org.navn)}</ListRow>
                 <ListRow>
                   {capitalizeFirstLetter(org.forretningsadresse?.kommune)}

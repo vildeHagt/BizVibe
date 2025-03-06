@@ -21,6 +21,6 @@ public class BusinessController : ControllerBase
     public async Task<Organisation[]?> Get(string organisationName)
     {
         var units = await _brregService.SearchForOrganisationsByName(organisationName);
-        return units.Embedded.Organisations;
+        return units.Embedded?.Organisations;
     }
 }
