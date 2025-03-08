@@ -69,17 +69,18 @@ const SearchWordDes = styled.p`
 interface OrganizationListProps {
   organizations: Organization[];
   searchWord: string;
+  selectOrganization: (organization: Organization) => void;
 }
 
 const OrganizationList: React.FC<OrganizationListProps> = ({
   organizations,
   searchWord,
+  selectOrganization,
 }) => {
   if (!searchWord) {
     return null;
   }
 
-  const navigate = useNavigate();
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   const handleMouseEnter = (index: number) => {
@@ -88,10 +89,6 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
 
   const handleMouseLeave = () => {
     setHoveredRow(null);
-  };
-
-  const handleClick = (organisationName: string) => {
-    navigate(`/organization/${orgId}`);
   };
 
   return (
@@ -103,30 +100,36 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
       <Container>
         <OrganizationCard>
           <table>
-            <tr>
-              <ListRowTitle>
-                Bedrift
-                <Emoji symbol="🏢" />
-              </ListRowTitle>
-              <ListRowTitle>
-                By
-                <Emoji symbol="📍" />
-              </ListRowTitle>
-            </tr>
-            {organizations.map((org, index) => (
-              <HoverContainer
-                key={index}
-                isHovered={hoveredRow === index}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => handleClick(org.navn)}
-              >
-                <ListRow>{capitalizeFirstLetter(org.navn)}</ListRow>
-                <ListRow>
-                  {capitalizeFirstLetter(org.forretningsadresse?.kommune)}
-                </ListRow>
-              </HoverContainer>
-            ))}
+            <thead>
+              <tr>
+                <ListRowTitle>
+                  Bedrift
+                  <Emoji symbol="🏢" />
+                </ListRowTitle>
+                <ListRowTitle>
+                  By
+                  <Emoji symbol="📍" />
+                </ListRowTitle>
+              </tr>
+            </thead>
+            <tbody>
+              {organizations.map((org, index) => (
+                <HoverContainer
+                  key={index}
+                  isHovered={hoveredRow === index}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => selectOrganization(org)}
+                >
+                  <ListRow>{capitalizeFirstLetter(org.navn)}</ListRow>
+                  <ListRow>
+                    {typeof org.forretningsadresse?.kommune === "string"
+                      ? capitalizeFirstLetter(org.forretningsadresse.kommune)
+                      : "-"}
+                  </ListRow>
+                </HoverContainer>
+              ))}
+            </tbody>
           </table>
         </OrganizationCard>
       </Container>
