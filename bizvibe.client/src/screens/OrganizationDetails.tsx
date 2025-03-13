@@ -6,5 +6,9 @@ export const OrganizationDetails: React.FC = () => {
   const location = useLocation();
   const { organization } = location.state;
 
-  return <CenteredContainer></CenteredContainer>;
+  return (
+    <CenteredContainer>
+      <OrganizationAnalysis organization={organization}></OrganizationAnalysis>
+    </CenteredContainer>
+  );
 };

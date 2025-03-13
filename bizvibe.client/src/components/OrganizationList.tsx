@@ -4,7 +4,6 @@ import { Container } from "./components";
 import Emoji from "../styles/Emoji";
 import { capitalizeFirstLetter } from "../utils/captilazieFirstLetter";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const OrganizationListContainer = styled.div`
   flex-wrap: wrap;
@@ -35,7 +34,11 @@ const ListRow = styled.td`
   color: ${(props) => props.theme.listText};
 `;
 
-const HoverContainer = styled.tr`
+interface HoverContainerProps {
+  isHovered: boolean;
+}
+
+const HoverContainer = styled.tr<HoverContainerProps>`
   transition: transform 0.2s, color 0.2s;
   margin: 0 auto;
 
@@ -77,11 +80,11 @@ const OrganizationList: React.FC<OrganizationListProps> = ({
   searchWord,
   selectOrganization,
 }) => {
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+
   if (!searchWord) {
     return null;
   }
-
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   const handleMouseEnter = (index: number) => {
     setHoveredRow(index);

@@ -13,12 +13,13 @@ const SearchBarContainer = styled.div`
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   input {
-    padding: 10px;
+    padding: 15px;
     border: none;
     border-radius: 5px;
     background-color: ${(props) => props.theme.secondary};
     color: ${(props) => props.theme.text};
     outline: none;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   }
 
   button {
