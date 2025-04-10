@@ -18,9 +18,16 @@ public class BusinessController : ControllerBase
     }
 
     [HttpGet("GetOrganisations")]
-    public async Task<Organisation[]?> Get(string organisationName)
+    public async Task<Organisation[]?> GetOrganisations(string organisationName)
     {
         var units = await _brregService.SearchForOrganisationsByName(organisationName);
         return units.Embedded?.Organisations;
+    }
+
+    [HttpGet("GetOrganisationData")]
+    public async Task<OrganisationData?> GetOrganisationData(string orgNum)
+    {
+        var orgData = await _brregService.GetOrganisationData(orgNum);
+        return orgData;
     }
 }

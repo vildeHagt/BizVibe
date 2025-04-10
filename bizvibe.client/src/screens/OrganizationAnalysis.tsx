@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Organization } from "../interfaces/Organization";
+import { fetchOrganizationData } from "../services/BrregApiService";
+import OrganisationEarningsChart from "../components/computing/OrganisationEarningsChart";
+import { OrganisationData } from "../interfaces/OrganisationData";
 
 const AnalysisContainer = styled.div`
   padding: 20px;
@@ -19,12 +22,26 @@ const DataPoint = styled.p`
   margin: 5px 0;
 `;
 
-const OrganizationAnalysis: React.FC<{ organization: Organization }> = ({
+const OrganizationAnalysis: React.FC<{ organization: Organization }> = async ({
   organization,
 }) => {
+  const [orgData, setOrgData] = useState<OrganisationData>();
+
+  try {
+    const data = await fetchOrganizationData(organization.organisasjonsnummer);
+    setOrgData(data);
+  } catch (err) {
+    console.error("Error fetching organization data:", err);
+  }
+
   return (
     <AnalysisContainer>
-      <SectionTitle>Organization Analysis</SectionTitle>
+      <SectionTitle>{organization.navn}</SectionTitle>
+      {orgData && (
+        <OrganisationEarningsChart
+          orgData={orgData}
+        ></OrganisationEarningsChart>
+      )}
     </AnalysisContainer>
   );
 };

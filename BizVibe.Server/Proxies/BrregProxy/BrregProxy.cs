@@ -19,5 +19,18 @@ namespace BizVibe.Server.Proxies.BrregProxy
             var organisations = await response.Content.ReadFromJsonAsync<Units>();
             return organisations;
         }
+
+        public async Task<OrganisationData?> GetOrganisationData(string orgNum)
+        {
+            var response = await httpClient.GetAsync(baseUrl + brregEndpoints.AccountingEndpoint(orgNum));
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            var organisationData = await response.Content.ReadFromJsonAsync<OrganisationData>();
+            return organisationData;
+        }
     }
 }

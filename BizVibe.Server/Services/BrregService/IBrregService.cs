@@ -6,5 +6,6 @@ namespace BizVibe.Server.Services.BrregService
     {
         public Task<Organisation> GetOrganisationByOrganisationNumber(string organisationNumber);
         public Task<Units?> SearchForOrganisationsByName(string organisationName);
+        public Task<OrganisationData?> GetOrganisationData(string orgNum);
     }
 }

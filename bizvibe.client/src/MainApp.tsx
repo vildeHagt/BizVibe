@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import App from "./App";
 import { darkTheme } from "./styles/theme.ts";
 import { OrganizationDetails } from "./screens/OrganizationDetails";
@@ -12,6 +12,7 @@ const MainApp = () => {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [searchWord, setSearchWord] = useState<string>("");
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSearchResults = (
@@ -30,21 +31,19 @@ const MainApp = () => {
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
       <HeaderMenu onSearchResults={handleSearchResults} />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <App
-                organizations={organizations}
-                searchWord={searchWord}
-                loading={loading}
-              />
-            }
-          />
-          <Route path="/organization" element={<OrganizationDetails />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <App
+              organizations={organizations}
+              searchWord={searchWord}
+              loading={loading}
+            />
+          }
+        />
+        <Route path="/organization" element={<OrganizationDetails />} />
+      </Routes>
     </ThemeProvider>
   );
 };

@@ -14,5 +14,10 @@ namespace BizVibe.Server.Services.BrregService
         {
             return BrregProxy.SearchForOrganisationsByName(organisationName);
         }
+
+        public Task<OrganisationData?> GetOrganisationData(string orgNum)
+        {
+            return BrregProxy.GetOrganisationData(orgNum);
+        }
     }
 }
