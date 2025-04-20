@@ -1,5 +1,5 @@
 # BizVibe
-⚠️ This project is no longer in progress as it the brreg API endpoint for gathering accounting numbers does not support returning multiple years (source: [Regnskapstall for et gitt årstall er ikke mulig?](https://github.com/brreg/regnskapsregister-api/issues/65)). 
+⚠️ This project is no longer in progress as the brreg API endpoint for gathering accounting numbers does not support returning multiple years (source: [Regnskapstall for et gitt årstall er ikke mulig?](https://github.com/brreg/regnskapsregister-api/issues/65)). 
 This is necessary for giving a representation of the business' vibe (yearly earnings and other metrics). 
 
 The **BizVibe Client** is a React-based web application designed to provide detailed financial insights and analysis for organizations. It fetches and displays data such as assets, liabilities, equity, and yearly earnings in an intuitive and visually appealing format.
