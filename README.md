@@ -4,13 +4,6 @@ This is necessary for giving a representation of the business' vibe (yearly earn
 
 The **BizVibe Client** is a React-based web application designed to provide detailed financial insights and analysis for organizations. It fetches and displays data such as assets, liabilities, equity, and yearly earnings in an intuitive and visually appealing format.
 
-## Features
-
-- **Organization Analysis**: View detailed financial data for organizations, including total assets, liabilities, equity, and profitability ratios.
-- **Interactive Charts**: Visualize yearly earnings and other financial metrics using dynamic bar charts powered by `react-chartjs-2`.
-- **Search Functionality**: Search for organizations and view their financial details.
-- **Responsive Design**: Optimized for various screen sizes, ensuring a seamless user experience on both desktop and mobile devices.
-
 ## Technologies Used
 
 - **Frontend**:
