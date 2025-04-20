@@ -18,6 +18,7 @@ The **BizVibe Client** is a React-based web application designed to provide deta
   - [TypeScript](https://www.typescriptlang.org/) - For type-safe development.
   - [Styled Components](https://styled-components.com/) - For styling React components.
   - [Chart.js](https://www.chartjs.org/) with [react-chartjs-2](https://react-chartjs-2.js.org/) - For interactive data visualization.
+  - [Emojipedia](https://emojipedia.org/) - Nice to use for emojies
 
 - **Backend**:
   - The client communicates with a backend API to fetch organization data. The API is expected to provide endpoints for retrieving financial data
