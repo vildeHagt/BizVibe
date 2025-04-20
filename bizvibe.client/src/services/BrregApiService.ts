@@ -41,7 +41,6 @@ export async function fetchOrganizationData(orgNum: string) {
     }
 
     const data = await response.json();
-    console.info(data);
     return data;
   } catch (error) {
     console.error("Failed to fetch organizations:", error);

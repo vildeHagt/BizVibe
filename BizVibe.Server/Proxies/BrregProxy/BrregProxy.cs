@@ -1,5 +1,7 @@
 ﻿using BizVibe.Server.Configs;
 using BizVibe.Server.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace BizVibe.Server.Proxies.BrregProxy
 {
@@ -23,14 +25,17 @@ namespace BizVibe.Server.Proxies.BrregProxy
         public async Task<OrganisationData?> GetOrganisationData(string orgNum)
         {
             var response = await httpClient.GetAsync(baseUrl + brregEndpoints.AccountingEndpoint(orgNum));
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Raw JSON Response: " + jsonResponse);
 
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            if (!response.IsSuccessStatusCode)
             {
-                return null;
+                Console.WriteLine($"Error fetching data: {response.StatusCode}");
+                return new OrganisationData();
             }
 
-            var organisationData = await response.Content.ReadFromJsonAsync<OrganisationData>();
-            return organisationData;
+            var organisationData = JsonSerializer.Deserialize<List<OrganisationData>>(jsonResponse);
+            return organisationData[0];
         }
     }
 }

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Organization } from "../interfaces/Organization";
 import { fetchOrganizationData } from "../services/BrregApiService";
 import OrganisationEarningsChart from "../components/computing/OrganisationEarningsChart";
 import { OrganisationData } from "../interfaces/OrganisationData";
+import { useEffect as reactUseEffect } from "react";
 
 const AnalysisContainer = styled.div`
   padding: 20px;
@@ -22,26 +23,30 @@ const DataPoint = styled.p`
   margin: 5px 0;
 `;
 
-const OrganizationAnalysis: React.FC<{ organization: Organization }> = async ({
+const OrganizationAnalysis: React.FC<{ organization: Organization }> = ({
   organization,
 }) => {
   const [orgData, setOrgData] = useState<OrganisationData>();
 
-  try {
-    const data = await fetchOrganizationData(organization.organisasjonsnummer);
-    setOrgData(data);
-  } catch (err) {
-    console.error("Error fetching organization data:", err);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchOrganizationData(
+          organization.organisasjonsnummer
+        );
+        setOrgData(data);
+      } catch (err) {
+        console.error("Error fetching organization data:", err);
+      }
+    };
+
+    fetchData();
+  }, [organization.organisasjonsnummer]);
 
   return (
     <AnalysisContainer>
       <SectionTitle>{organization.navn}</SectionTitle>
-      {orgData && (
-        <OrganisationEarningsChart
-          orgData={orgData}
-        ></OrganisationEarningsChart>
-      )}
+      {orgData && <OrganisationEarningsChart orgData={orgData} />}
     </AnalysisContainer>
   );
 };
