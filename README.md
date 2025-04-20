@@ -14,7 +14,8 @@ The **BizVibe Client** is a React-based web application designed to provide deta
   - [Emojipedia](https://emojipedia.org/) - Nice to use for emojies
 
 - **Backend**:
-  - The client communicates with a backend API to fetch organization data. The API is expected to provide endpoints for retrieving financial data
+  - C#
+  - .NET 8
 
 # Visuals
 
