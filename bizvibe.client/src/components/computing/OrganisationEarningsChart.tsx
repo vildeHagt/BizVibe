@@ -40,14 +40,14 @@ const OrganisationEarningsChart = ({
           totalresultat ?? 0,
         ],
         backgroundColor: [
-          "rgba(54, 162, 235, 0.6)",
-          "rgba(255, 206, 86, 0.6)",
-          "rgba(75, 192, 192, 0.6)",
+          "rgba(106, 81, 161, 0.6)", // graphPrimary with opacity
+          "rgba(138, 118, 184, 0.6)", // graphSecondary with opacity
+          "rgba(187, 143, 206, 0.6)", // graphAccent with opacity
         ],
         borderColor: [
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
+          "#6A51A1", // graphPrimary
+          "#8A76B8", // graphSecondary
+          "#BB8FCE", // graphAccent
         ],
         borderWidth: 1,
       },
@@ -62,7 +62,7 @@ const OrganisationEarningsChart = ({
       },
       title: {
         display: true,
-        text: `Resultatkomponenter for ${year} – Org: ${orgData.virksomhet.organisasjonsnummer}`,
+        text: `Lønnsomhet for ${year}`,
         font: {
           size: 18,
         },
